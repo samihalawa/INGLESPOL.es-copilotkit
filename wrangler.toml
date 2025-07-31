@@ -1,0 +1,19 @@
+name = "inglespol-copilotkit"
+compatibility_date = "2024-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+vars = { NODE_ENV = "production" }
+
+[[env.production.kv_namespaces]]
+binding = "CACHE"
+id = "cache_namespace"
+
+[build]
+command = "npm run build"
+cwd = "."
+
+[build.upload]
+format = "modules"
+dir = ".next"
+main = "./server.js"
