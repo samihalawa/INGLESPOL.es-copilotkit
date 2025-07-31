@@ -14,8 +14,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <CopilotKit
-          publicApiKey="ck_pub_demo_key"
-          showDevConsole={true}
+          publicApiKey="ck_pub_43a698f5fe8def958b149ba0ee1a82b2"
+          showDevConsole={false}
         >
           <GlobalStateProvider>
             <div className="h-screen w-screen grid grid-cols-[40fr,60fr] p-10 gap-5">
