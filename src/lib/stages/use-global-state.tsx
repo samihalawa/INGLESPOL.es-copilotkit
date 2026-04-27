@@ -1,28 +1,30 @@
 import { createContext, useContext, ReactNode, useState } from "react";
-import { Car, ContactInfo, CardInfo, Order, defaultOrders, FinancingInfo } from "@/lib/types";
+import { StudentInfo, StudyPlan, Progress, LearningSession, defaultSessions, Question, PaymentInfo } from "@/lib/types";
 import { useCopilotReadable } from "@copilotkit/react-core";
 
 export type Stage =
-  | "buildCar"
-  | "getContactInfo"
-  | "sellFinancing"
-  | "getFinancingInfo"
-  | "getPaymentInfo"
-  | "confirmOrder";
+  | "contactInfo"
+  | "needsAssessment"
+  | "courseSelection"
+  | "courseCustomization"
+  | "paymentDetails"
+  | "enrollmentConfirmation";
 
 interface GlobalState {
   stage: Stage;
   setStage: React.Dispatch<React.SetStateAction<Stage>>;
-  selectedCar: Car | null;
-  setSelectedCar: React.Dispatch<React.SetStateAction<Car | null>>;
-  contactInfo: ContactInfo | null;
-  setContactInfo: React.Dispatch<React.SetStateAction<ContactInfo | null>>;
-  cardInfo: CardInfo | null;
-  setCardInfo: React.Dispatch<React.SetStateAction<CardInfo | null>>;
-  orders: Order[];
-  setOrders: React.Dispatch<React.SetStateAction<Order[]>>;
-  financingInfo: FinancingInfo | null;
-  setFinancingInfo: React.Dispatch<React.SetStateAction<FinancingInfo | null>>;
+  studentInfo: StudentInfo | null;
+  setStudentInfo: React.Dispatch<React.SetStateAction<StudentInfo | null>>;
+  studyPlan: StudyPlan | null;
+  setStudyPlan: React.Dispatch<React.SetStateAction<StudyPlan | null>>;
+  paymentInfo: PaymentInfo | null;
+  setPaymentInfo: React.Dispatch<React.SetStateAction<PaymentInfo | null>>;
+  progress: Progress | null;
+  setProgress: React.Dispatch<React.SetStateAction<Progress | null>>;
+  sessions: LearningSession[];
+  setSessions: React.Dispatch<React.SetStateAction<LearningSession[]>>;
+  currentQuestion: Question | null;
+  setCurrentQuestion: React.Dispatch<React.SetStateAction<Question | null>>;
 }
 
 export const GlobalStateContext = createContext<GlobalState | null>(null);
@@ -30,12 +32,12 @@ export const GlobalStateContext = createContext<GlobalState | null>(null);
 /**
   useGlobalState is a hook that will return the global state of the application. It must
   be used within a GlobalStateProvider. It keeps track of the:
-  - Current stage of the application.
-  - Selected car.
-  - Contact information of the user.
-  - Card information of the user.
-  - Orders of the user.
-  - Financing information of the user.
+  - Current stage of the learning workflow.
+  - Student information and preferences.
+  - Study plan configuration.
+  - Learning progress and achievements.
+  - Learning sessions history.
+  - Current practice question.
 */
 export function useGlobalState() {
   const context = useContext(GlobalStateContext);
@@ -51,52 +53,65 @@ export function useGlobalState() {
   all components.
 */
 export function GlobalStateProvider({ children }: { children: ReactNode }) {
-  const [stage, setStage] = useState<Stage>("getContactInfo");
-  const [selectedCar, setSelectedCar] = useState<Car | null>(null);
-  const [contactInfo, setContactInfo] = useState<ContactInfo | null>(null);
-  const [cardInfo, setCardInfo] = useState<CardInfo | null>(null);
-  const [orders, setOrders] = useState<Order[]>(defaultOrders);
-  const [financingInfo, setFinancingInfo] = useState<FinancingInfo | null>(null);
+  const [stage, setStage] = useState<Stage>("contactInfo");
+  const [studentInfo, setStudentInfo] = useState<StudentInfo | null>(null);
+  const [studyPlan, setStudyPlan] = useState<StudyPlan | null>(null);
+  const [paymentInfo, setPaymentInfo] = useState<PaymentInfo | null>(null);
+  const [progress, setProgress] = useState<Progress | null>(null);
+  const [sessions, setSessions] = useState<LearningSession[]>(defaultSessions);
+  const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
 
   // Make the global state readable to CopilotKit
   useCopilotReadable({
-    description: "Current stage of the car sales process",
+    description: "Current stage of the INGLESPOL course selling process",
     value: stage,
   });
 
   useCopilotReadable({
-    description: "Selected car information",
-    value: selectedCar,
+    description: "Student contact information and exam preferences",
+    value: studentInfo,
   });
 
   useCopilotReadable({
-    description: "Customer contact information",
-    value: contactInfo,
+    description: "Selected course package and study plan",
+    value: studyPlan,
   });
 
   useCopilotReadable({
-    description: "Customer orders",
-    value: orders,
+    description: "Payment information and method selected",
+    value: paymentInfo,
   });
 
   useCopilotReadable({
-    description: "Financing information",
-    value: financingInfo,
+    description: "Student's learning progress and achievements",
+    value: progress,
+  });
+
+  useCopilotReadable({
+    description: "Learning sessions history",
+    value: sessions,
+  });
+
+  useCopilotReadable({
+    description: "Current practice question being answered",
+    value: currentQuestion,
   });
 
   const value = {
     stage,
     setStage,
-    selectedCar,
-    setSelectedCar,
-    contactInfo,
-    setContactInfo,
-    cardInfo,
-    setCardInfo,
-    orders,
-    setOrders,
-    financingInfo,
-    setFinancingInfo,
+    studentInfo,
+    setStudentInfo,
+    studyPlan,
+    setStudyPlan,
+    paymentInfo,
+    setPaymentInfo,
+    progress,
+    setProgress,
+    sessions,
+    setSessions,
+    currentQuestion,
+    setCurrentQuestion,
   };
 
   return (

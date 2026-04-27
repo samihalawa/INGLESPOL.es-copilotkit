@@ -1,24 +1,24 @@
 "use client";
 
-import { OrderCards } from "@/components/order-cards";
+import { LearningSessions } from "@/components/learning-sessions";
 import { StateVisualizer } from "@/components/state-visualizer";
 import { Tabs } from "@/components/tabs";
 import { useGlobalState } from "@/lib/stages";
 import { useState } from "react";
 
 export default function Home() {
-  const { orders } = useGlobalState();
-  const [activeTab, setActiveTab] = useState<string>("orders");
+  const { sessions } = useGlobalState();
+  const [activeTab, setActiveTab] = useState<string>("sessions");
 
   const tabs = [
     {
-      id: "orders",
-      label: "Orders",
-      content: <OrderCards orders={orders} />,
+      id: "sessions",
+      label: "Sesiones de Aprendizaje",
+      content: <LearningSessions sessions={sessions} />,
     },
     {
       id: "visualizer",
-      label: "State Visualizer",
+      label: "Visualizador de Estados",
       content: <StateVisualizer />,
     },
   ];

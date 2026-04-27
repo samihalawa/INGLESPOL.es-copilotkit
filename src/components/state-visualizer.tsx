@@ -4,12 +4,12 @@ import { useGlobalState } from "@/lib/stages";
 import { cn } from "@/lib/utils/cn";
 
 const stages = [
-  { id: "getContactInfo", label: "Contact Info", description: "Collect customer details" },
-  { id: "buildCar", label: "Build Car", description: "Select and customize vehicle" },
-  { id: "sellFinancing", label: "Financing Options", description: "Choose payment method" },
-  { id: "getFinancingInfo", label: "Financing Details", description: "Configure loan terms" },
-  { id: "getPaymentInfo", label: "Payment Info", description: "Enter payment details" },
-  { id: "confirmOrder", label: "Confirm Order", description: "Finalize purchase" },
+  { id: "contactInfo", label: "Información", description: "Datos de contacto" },
+  { id: "needsAssessment", label: "Evaluación", description: "Nivel de inglés" },
+  { id: "courseSelection", label: "Cursos", description: "Selección de curso" },
+  { id: "courseCustomization", label: "Personalización", description: "Configurar curso" },
+  { id: "paymentDetails", label: "Pago", description: "Detalles de pago" },
+  { id: "enrollmentConfirmation", label: "Matrícula", description: "Confirmar inscripción" },
 ];
 
 export function StateVisualizer() {
@@ -19,7 +19,7 @@ export function StateVisualizer() {
 
   return (
     <div className="w-full max-w-4xl mx-auto p-6">
-      <h2 className="text-2xl font-bold text-center mb-8">Car Sales Process</h2>
+      <h2 className="text-2xl font-bold text-center mb-8">Proceso de Matrícula INGLESPOL</h2>
       
       <div className="relative">
         {/* Progress Line */}

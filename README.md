@@ -1,22 +1,23 @@
 # INGLESPOL CopilotKit State Machine Demo
 
-A car sales application built with CopilotKit and Gemini 2.0 Flash, demonstrating a multi-stage conversational AI workflow.
+A course selling application for INGLESPOL English academy built with CopilotKit and Gemini 2.0 Flash, demonstrating a multi-stage conversational AI workflow for selling English courses for Spanish civil service exams.
 
 ## Features
 
-- **State Machine Architecture**: Six-stage car sales process with CopilotKit integration
+- **State Machine Architecture**: Six-stage course selling process with CopilotKit integration
 - **Custom AI Model**: Powered by Gemini 2.0 Flash for enhanced conversational abilities
-- **Interactive UI**: Real-time state visualization and order management
+- **Interactive UI**: Real-time state visualization and enrollment management
+- **INGLESPOL Integration**: Authentic branding and methodology from Spain's leading civil service English academy
 - **Responsive Design**: Built with Next.js 14 and Tailwind CSS
 
 ## Stages
 
-1. **Contact Information** - Collect customer details
-2. **Car Selection** - Browse and select vehicles
-3. **Financing Options** - Choose between financing and cash payment
-4. **Financing Details** - Configure loan terms (if applicable)
-5. **Payment Information** - Enter payment details
-6. **Order Confirmation** - Review and confirm purchase
+1. **Contact Information** - Collect student details and exam type
+2. **Needs Assessment** - Evaluate English level and requirements
+3. **Course Selection** - Present appropriate course packages
+4. **Course Customization** - Personalize schedule and preferences
+5. **Payment Details** - Configure payment method and plan
+6. **Enrollment Confirmation** - Finalize course enrollment
 
 ## Local Development
 
@@ -55,4 +56,4 @@ This project is configured for Cloudflare Pages deployment with the following en
 
 ## Architecture
 
-The application uses CopilotKit's state machine pattern to create a guided conversational flow. Each stage is implemented as a custom hook that manages its own state and transitions, while the global state provider maintains the overall application state.
+The application uses CopilotKit's state machine pattern to create a guided course selling flow. Each stage is implemented as a custom hook that manages its own state and transitions, while the global state provider maintains the overall enrollment state. The system follows INGLESPOL's proven methodology for helping Spanish civil service candidates achieve 18+ points in English exams.
